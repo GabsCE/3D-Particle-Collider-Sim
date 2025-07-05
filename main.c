@@ -218,7 +218,7 @@ int main(){
 
     // 3D camera (taken from raylib examples)
     Camera3D camera = { 0 };
-    camera.position = (Vector3){ 10.0f, 10.0f, 10.0f }; // camera position
+    camera.position = (Vector3){ 40.0f, 40.0f, 40.0f }; // camera position
     camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // camera looking at point 
     camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // camera up vector 
     camera.fovy = 45.0f;                                // camera fov Y
@@ -265,7 +265,7 @@ int main(){
         // total energy
         float energy = CalculateTotalEnergy();
 
-        // Aupdates spheres sim
+        // updates spheres sim
         float deltaTime = GetFrameTime();
         UpdateSim(deltaTime);
         //----------------------------------------------------------------------------------
@@ -282,23 +282,23 @@ int main(){
                 DrawBall();
 
                 // draws box
-                DrawCubeWires((Vector3){ 0.0f, 0.0f, 0.0f }, MAX_SPACE, MAX_SPACE, MAX_SPACE, DARKGRAY);
+                DrawCubeWires((Vector3){ 0.0f, 0.0f, 0.0f }, MAX_SPACE, MAX_SPACE, MAX_SPACE, WHITE);
                 // draw grid on the floor (just for looks)
-                DrawGrid(0, 0.0f);
+                //DrawGrid(0, 0.0f);
 
 
             EndMode3D();
 
             // fps and misc info
             DrawFPS(10, 10);
-            DrawText("Free camera controls:", 10, 40, 10, WHITE);
-            DrawText("- Move with WASD, Q/E for Up/Down", 10, 60, 10, WHITE);
-            DrawText("- Rotate with Mouse (Hold Right Click)", 10, 80, 10, WHITE);
-            DrawText("- Scroll Wheel for Zoom", 10, 100, 10, WHITE);
-            DrawText("- Press 'R' to reset camera", 10, 120, 10, WHITE);
-            DrawText(TextFormat("Restitution Coeff: %.2f (Press +/-)", restCoeff), 10, 160, 10, WHITE);
-            DrawText(TextFormat("Spheres: %i (Press N/M)", numSpheres), 10, 140, 10, WHITE);
-            DrawText(TextFormat("Total Energy: %.2f J", energy), 10, 180, 10, WHITE);
+            DrawText("Free camera controls:", 10, 40, 20, WHITE);
+            DrawText("- Move with WASD, Q/E for Up/Down", 10, 60, 20, WHITE);
+            DrawText("- Rotate with Mouse (Hold Right Click)", 10, 80, 20, WHITE);
+            DrawText("- Scroll Wheel for Zoom", 10, 100, 20, WHITE);
+            DrawText("- Press 'R' to reset camera", 10, 120, 20, WHITE);
+            DrawText(TextFormat("Restitution Coeff: %.2f (Press +/-)", restCoeff), 10, 160, 20, WHITE);
+            DrawText(TextFormat("Spheres: %i (Press N/M)", numSpheres), 10, 140, 20, WHITE);
+            DrawText(TextFormat("Total Energy: %.2f J", energy), 10, 180, 20, WHITE);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
@@ -314,3 +314,24 @@ int main(){
 
      return 0;
 }
+
+
+
+/* some cool code
+float Q_rsqrt( float number )
+{
+	long i;
+	float x2, y;
+	const float threehalfs = 1.5F;
+
+	x2 = number * 0.5F;
+	y  = number;
+	i  = * ( long * ) &y;                       // evil floating point bit level hacking
+	i  = 0x5f3759df - ( i >> 1 );               // what the fuck?
+	y  = * ( float * ) &i;
+	y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
+//	y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
+
+	return y;
+}
+*/
