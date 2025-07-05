@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build raylib project",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "-IC:/raylib/include",
+        "main.c",
+        "-o",
+        "main.exe",
+        "-LC:/raylib/lib",
+        "-lraylib",
+        "-lopengl32",
+        "-lgdi32",
+        "-lwinmm"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}
